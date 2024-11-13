@@ -12,7 +12,7 @@ The application simulates a URL shortening service with the following resources:
 
 ## Challenge
 
-Please fork the repository into your account and continue the development in your fork.
+Clone this repository and complete the implementation of the provided boilerplate code. The application should provide the following functionalities:
 
 ### Your Tasks
 
@@ -132,6 +132,12 @@ To stand out in your submission, you can Dockerize the application:
 
 
 ## How to Submit
+
+For submitting the assignment, please follow these steps:
+
+* Ensure that you push your code into a private repository on GitHub.
+* Add `Shwetabhk` as a collaborator to your repository with Admin access.
+* For steps to add a collaborator to your repository, refer to [this link](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository).
 
 **Once you are done with your task, please use [this form](https://example.com) to complete your submission.**
 
