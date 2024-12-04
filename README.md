@@ -22,8 +22,8 @@ Once you submit the assignment, you will hear back from us within 2 working days
 
 ## Installation
 
-1. **Clone** the forked repository and proceed with the steps mentioned below.
-2. Please ensure you push your code into a **private repository** on GitHub.
+1. **Please ensure that you don't fork this repository. We want your submission to be private to avoid plagiarism**
+2. Clone the repo to your local and ensure you push your code into your own **private repository** on GitHub.
 
 ### Install Requirements
 
@@ -36,7 +36,7 @@ pip3 install -r requirements.txt
 ### Reset the Database
 
 ```bash
-rm -rf url_shortener.db
+rm -rf instance/url_shortener.db
 ```
 
 ### Start the Server
