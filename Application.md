@@ -136,7 +136,7 @@ To stand out in your submission, you can Dockerize the application:
 For submitting the assignment, please follow these steps:
 
 * Ensure that you push your code into a private repository on GitHub.
-* Add `Shwetabhk` as a collaborator to your repository with Admin access.
+* Add `Shwetabhk` and `kartikeyrajvaidya` as collaborators to your repository with Admin access.
 * For steps to add a collaborator to your repository, refer to [this link](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository).
 
 **Once you are done with your task, please use [this form](https://forms.gle/khbqTVLnMtbiQZTp6) to complete your submission.**
