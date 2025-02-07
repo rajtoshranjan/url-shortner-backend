@@ -1,9 +1,9 @@
-from flask import (
-    Flask, redirect, jsonify, request, abort, Response
-)
 from datetime import datetime, UTC
-from .models import URL
+
+from flask import Flask, redirect, jsonify, request, abort, Response
+
 from .extensions import db
+from .models import URL
 from .utils import calculate_expiration_time, get_base_url
 
 app = Flask(__name__)
@@ -52,7 +52,6 @@ def shorten_url():
     except ValueError as e:
         return jsonify({'error': str(e)}), 400
 
-    # Create new shortened URL
     url_entry = URL(
         original_url=data['url'],
         short_url=slug
@@ -80,7 +79,10 @@ def shorten_url():
 
 # Route for redirection
 def redirect_url(short_url: str) -> Response:
-    """Redirect to the original URL"""
+    """
+    Redirect to the original URL
+    """
+
     url_entry = URL.query.filter_by(short_url=short_url).first()
 
     if not url_entry:
@@ -101,14 +103,19 @@ def redirect_url(short_url: str) -> Response:
 
 # Route for getting analytics
 def url_analytics(short_url: str) -> Response:
-    """Get analytics for a shortened URL"""
+    """
+    Get analytics for a shortened URL
+    """
+
     url_entry = URL.query.filter_by(short_url=short_url).first()
 
     if not url_entry:
         abort(404)
 
     base_url = get_base_url()
-    expiration_time = url_entry.expiration_time.isoformat() if url_entry.expiration_time else None
+    expiration_time = (
+        url_entry.expiration_time.isoformat() if url_entry.expiration_time else None
+    )
 
     return jsonify({
         'original_url': url_entry.original_url,
