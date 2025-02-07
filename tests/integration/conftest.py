@@ -65,7 +65,7 @@ def sample_url(session: Session) -> URL:
     """
     url = URL(
         original_url='http://example.com',
-        short_url=URL.generate_short_url()
+        slug=URL.generate_slug()
     )
     session.add(url)
     session.commit()
@@ -80,7 +80,7 @@ def expired_url(session: Session) -> URL:
     """
     url = URL(
         original_url='http://example.com',
-        short_url=URL.generate_short_url(),
+        slug=URL.generate_slug(),
         expiration_time=datetime.now(UTC) - timedelta(seconds=1)
     )
     session.add(url)
@@ -96,7 +96,7 @@ def url_with_expiry(session: Session) -> URL:
     """
     url = URL(
         original_url='http://example.com',
-        short_url=URL.generate_short_url(),
+        slug=URL.generate_slug(),
         expiration_time=datetime.now(UTC) + timedelta(days=1)
     )
     session.add(url)

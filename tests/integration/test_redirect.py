@@ -7,7 +7,7 @@ def test_redirect_success(client, sample_url):
     """
 
     # Act
-    redirect_response = client.get(f'/{sample_url.short_url}')
+    redirect_response = client.get(f'/{sample_url.slug}')
 
     # Assert
     assert redirect_response.status_code == 302
@@ -16,14 +16,14 @@ def test_redirect_success(client, sample_url):
 
 def test_redirect_nonexistent_url(client):
     """
-    Test redirection for non-existent short URL
+    Test redirection for non-existent URL slug
     """
 
     # Arrange
-    nonexistent_url = 'nonexistent'
+    nonexistent_slug = 'nonexistent'
 
     # Act
-    response = client.get(f'/{nonexistent_url}')
+    response = client.get(f'/{nonexistent_slug}')
 
     # Assert
     assert response.status_code == 404
@@ -35,7 +35,7 @@ def test_redirect_expired_url(client, expired_url):
     """
 
     # Act
-    redirect_response = client.get(f'/{expired_url.short_url}')
+    redirect_response = client.get(f'/{expired_url.slug}')
     response_data = json.loads(redirect_response.data)
 
     # Assert
@@ -50,9 +50,9 @@ def test_redirect_increments_access_count(client, sample_url):
 
     # Act
     for _ in range(3):
-        client.get(f'/{sample_url.short_url}')
+        client.get(f'/{sample_url.slug}')
 
-    analytics_response = client.get(f'/analytics/{sample_url.short_url}')
+    analytics_response = client.get(f'/analytics/{sample_url.slug}')
     analytics_data = json.loads(analytics_response.data)
 
     # Assert

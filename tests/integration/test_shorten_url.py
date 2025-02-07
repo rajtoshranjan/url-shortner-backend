@@ -22,7 +22,8 @@ def test_shorten_url_success(client):
     assert response.status_code == 201
     assert 'id' in data
     assert data['url'] == 'http://example.com'
-    assert 'short_url' in data
+    assert data['short_url'] is not None
+    assert data['slug'] is not None
     assert data['custom_expiration']['type'] == 'DAY'
     assert data['custom_expiration']['value'] == 1
 
@@ -86,6 +87,7 @@ def test_update_url_expiration(client, sample_url):
     # Assert
     assert update_response.status_code == 200
     assert update_data['id'] == sample_url.id
+    assert update_data['slug'] == sample_url.slug
     assert update_data['custom_expiration']['type'] == 'HOUR'
     assert update_data['custom_expiration']['value'] == 20
 
@@ -115,14 +117,14 @@ def test_update_nonexistent_url(client):
 
 def test_shorten_url_generation_failure(client, monkeypatch):
     """
-    Test error handling when short URL generation fails
+    Test error handling when slug generation fails
     """
 
     # Arrange
-    def mock_generate_short_url():
-        raise ValueError("Could not generate unique short URL after multiple attempts")
+    def mock_generate_slug():
+        raise ValueError("Could not generate unique slug after multiple attempts")
 
-    monkeypatch.setattr('src.models.URL.generate_short_url', mock_generate_short_url)
+    monkeypatch.setattr('src.models.URL.generate_slug', mock_generate_slug)
 
     payload = {
         'url': 'http://example.com'
@@ -134,4 +136,4 @@ def test_shorten_url_generation_failure(client, monkeypatch):
 
     # Assert
     assert response.status_code == 400
-    assert data['error'] == "Could not generate unique short URL after multiple attempts"
+    assert data['error'] == "Could not generate unique slug after multiple attempts"

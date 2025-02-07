@@ -22,5 +22,5 @@ def ping():
 
 # Register routes without Flask-RESTful
 app.add_url_rule('/shorten', view_func=shorten_url, methods=['POST'])
-app.add_url_rule('/<string:short_url>', view_func=redirect_url)
-app.add_url_rule('/analytics/<string:short_url>', view_func=url_analytics)
+app.add_url_rule('/<string:slug>', view_func=redirect_url)
+app.add_url_rule('/analytics/<string:slug>', view_func=url_analytics)
