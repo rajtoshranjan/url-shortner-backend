@@ -41,6 +41,7 @@ def get_base_url() -> str:
     Returns base URL of the app
     """
 
-    if current_app.config['BASE_URL']:
-        return current_app.config['BASE_URL']
+    if base_url := current_app.config.get('BASE_URL'):
+        return base_url
+
     return request.host_url.rstrip('/')
