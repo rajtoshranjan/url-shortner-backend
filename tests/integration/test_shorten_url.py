@@ -111,3 +111,27 @@ def test_update_nonexistent_url(client):
     # Assert
     assert response.status_code == 404
     assert data['error'] == 'URL not found'
+
+
+def test_shorten_url_generation_failure(client, monkeypatch):
+    """
+    Test error handling when short URL generation fails
+    """
+
+    # Arrange
+    def mock_generate_short_url():
+        raise ValueError("Could not generate unique short URL after multiple attempts")
+
+    monkeypatch.setattr('src.models.URL.generate_short_url', mock_generate_short_url)
+
+    payload = {
+        'url': 'http://example.com'
+    }
+
+    # Act
+    response = client.post('/shorten', json=payload)
+    data = json.loads(response.data)
+
+    # Assert
+    assert response.status_code == 400
+    assert data['error'] == "Could not generate unique short URL after multiple attempts"

@@ -27,15 +27,12 @@ def shorten_url():
             return jsonify({'error': 'URL not found'}), 404
 
         if custom_expiration := data.get('custom_expiration'):
-            try:
-                url_entry.expiration_time = calculate_expiration_time(
-                    custom_expiration['type'],
-                    custom_expiration['value']
-                )
-                db.session.commit()
-            except ValueError as e:
-                return jsonify({'error': str(e)}), 400
-
+            url_entry.expiration_time = calculate_expiration_time(
+                custom_expiration['type'],
+                custom_expiration['value']
+            )
+            db.session.commit()
+        
         return jsonify({
             'id': url_entry.id,
             'url': url_entry.original_url,
