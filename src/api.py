@@ -11,6 +11,15 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
+
+@app.route('/ping')
+def ping():
+    """
+    Health check endpoint to check if the server is running
+    """
+    return 'pong'
+
+
 # Register routes without Flask-RESTful
 app.add_url_rule('/shorten', view_func=shorten_url, methods=['POST'])
 app.add_url_rule('/<string:short_url>', view_func=redirect_url)
