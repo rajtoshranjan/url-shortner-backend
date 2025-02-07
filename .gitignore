@@ -163,3 +163,12 @@ cython_debug/
 
 solution
 virtual-env/
+
+data/
+*.db
+__pycache__/
+*.pyc
+.coverage
+htmlcov/
+.pytest_cache/
+.env
