@@ -1,8 +1,8 @@
 import string
 
-from .extensions import db
 from datetime import datetime, UTC
 from nanoid import generate
+from .extensions import db
 
 
 class URL(db.Model):
