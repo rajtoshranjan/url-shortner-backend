@@ -15,8 +15,8 @@ This repository provides the backend implementation of a URL shortening service.
 This backend service is built with the following technologies:
 
 - **Python**: Core language for the backend logic and API implementation.
-- **Flask** / **FastAPI** (or other Python framework): For creating RESTful APIs.
-- **Database**: **SQLite** A relational database for storing URL mappings and analytics.
+- **Flask**: For creating RESTful APIs.
+- **SQLite**: A relational database for storing URL mappings and analytics.
 
 ## Installation
 
